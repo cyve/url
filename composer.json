@@ -1,0 +1,21 @@
+{
+    "name": "cyve/url",
+    "description": "URL manipulation",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cyril Vermandé",
+            "email": "cyril@cyrilwebdesign.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "Cyve\\Url\\" : "src/" }
+    },
+    "autoload-dev" : {
+        "psr-4": { "Cyve\\Url\\Test\\" : "tests/" }
+    },
+    "require": {
+        "php": ">=7.0"
+    }
+}
