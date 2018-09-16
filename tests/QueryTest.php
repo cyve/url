@@ -11,11 +11,12 @@ class QueryTest extends TestCase
 	{
 		$query = new Query('lorem=ipsum&sit=dolor');
 		
+		$this->assertEquals('lorem=ipsum&sit=dolor', $query);
 		$this->assertEquals('ipsum', $query->get('lorem'));
 		$this->assertEquals('dolor', $query->get('sit'));
 		$this->assertEquals(null, $query->get('amet'));
-		$this->assertEquals('foo', $query->get('amet', 'foo'));
 		$this->assertEquals(['lorem' => 'ipsum', 'sit' => 'dolor'], $query->all());
-		$this->assertEquals('lorem=ipsum&sit=dolor', $query);
+		$this->assertEquals('foo', $query->get('amet', 'foo'));
+		$this->assertEquals('foo', $query->set('amet', 'foo')->get('amet'));
 	}
 }

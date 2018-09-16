@@ -13,8 +13,9 @@ class PathTest extends TestCase
 
 		$this->assertEquals('foo', $path[0]);
 		$this->assertEquals('bar', $path[1]);
+		unset($path[1]);
 		$path[] = 'pouet';
-		$this->assertEquals('/foo/bar/pouet', $path);
-		$this->assertCount(3, $path);
+		$this->assertEquals('/foo/pouet', $path);
+		$this->assertCount(2, $path);
 	}
 }
