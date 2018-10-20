@@ -12,32 +12,56 @@ class UrlTest extends TestCase
 	 */
 	public function testUrl($url, $expect)
 	{
-		$url = new Url($url);
-		
-		$this->assertEquals($expect['scheme'], $url->scheme);
-		$this->assertEquals($expect['username'], $url->username);
-		$this->assertEquals($expect['password'], $url->password);
-		$this->assertEquals($expect['host'], $url->host);
-		$this->assertEquals($expect['port'], $url->port);
-		$this->assertEquals($expect['scheme'], $url->scheme);
-		$this->assertEquals($expect['path'], $url->path);
-		$this->assertEquals($expect['query'], $url->query);
-		$this->assertEquals($expect['fragment'], $url->fragment);
+		$objectUrl = new Url($url);
+
+        $this->assertEquals($url, $objectUrl);
+
+		$this->assertEquals($expect['scheme'], $objectUrl->scheme);
+		$this->assertEquals($expect['username'], $objectUrl->username);
+		$this->assertEquals($expect['password'], $objectUrl->password);
+		$this->assertEquals($expect['host'], $objectUrl->host);
+		$this->assertEquals($expect['subDomain'], $objectUrl->subDomain);
+		$this->assertEquals($expect['domain'], $objectUrl->domain);
+		$this->assertEquals($expect['tld'], $objectUrl->tld);
+		$this->assertEquals($expect['port'], $objectUrl->port);
+		$this->assertEquals($expect['scheme'], $objectUrl->scheme);
+		$this->assertEquals($expect['path'], $objectUrl->path);
+		$this->assertEquals($expect['query'], $objectUrl->query);
+		$this->assertEquals($expect['fragment'], $objectUrl->fragment);
 	}
 
 	public function urlProvider()
 	{
 		yield [
-			'https://username:password@domain.tld:8000/foo/bar?lorem=ipsum#fragment',
+			'https://username:password@sub.domain.tld:8000/foo/bar?lorem=ipsum#fragment',
 			[
 				'scheme' => 'https',
 				'username' => 'username',
 				'password' => 'password',
-				'host' => 'domain.tld',
+				'host' => 'sub.domain.tld',
+				'subDomain' => 'sub',
+				'domain' => 'domain.tld',
+				'tld' => 'tld',
 				'port' => 8000,
 				'path' => '/foo/bar',
 				'query' => 'lorem=ipsum',
 				'fragment' => 'fragment',
+			]
+		];
+		yield [
+			'http://domain.tld',
+			[
+				'scheme' => 'http',
+				'username' => null,
+				'password' => null,
+				'host' => 'domain.tld',
+				'subDomain' => '',
+				'domain' => 'domain.tld',
+				'tld' => 'tld',
+				'port' => 80,
+				'path' => '/',
+				'query' => '',
+				'fragment' => '',
 			]
 		];
 	}

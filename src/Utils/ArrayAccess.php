@@ -6,7 +6,7 @@ trait ArrayAccess
 {
     private $items = [];
 
-	public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
             $this->items[] = $value;

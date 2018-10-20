@@ -6,7 +6,7 @@ trait Countable
 {
     private $items = [];
 
-	public function count()
+    public function count()
     {
         return count($this->items);
     }

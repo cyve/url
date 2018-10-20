@@ -5,9 +5,9 @@ namespace Cyve\Url\Utils;
 trait Iterator
 {
     private $items = [];
-	private $position = 0;
+    private $position = 0;
 
-	public function rewind()
+    public function rewind()
     {
         $this->position = 0;
     }

@@ -10,6 +10,8 @@ class QueryTest extends TestCase
 	public function testQuery()
 	{
 		$query = new Query('lorem=ipsum&sit=dolor');
+
+        $this->assertEquals('lorem=ipsum&sit=dolor', $query);
 		
 		$this->assertEquals('lorem=ipsum&sit=dolor', $query);
 		$this->assertEquals('ipsum', $query->get('lorem'));
