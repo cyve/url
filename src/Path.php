@@ -8,13 +8,15 @@ class Path implements \ArrayAccess, \Countable, \Iterator
     use Utils\Countable;
     use Utils\Iterator;
 
-    public function __construct(string $path)
+    public function __construct(string $path = null)
     {
-        $this->items = explode('/', trim($path, '/'));
+        if ($path && $path !== '/') {
+            $this->items = explode('/', trim($path, '/'));
+        }
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return '/'.implode('/', $this->items);
+        return count($this->items) ? '/'.implode('/', $this->items) : '';
     }
 }

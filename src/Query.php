@@ -4,32 +4,34 @@ namespace Cyve\Url;
 
 class Query
 {
-    private $parameters = [];
+    private $items = [];
 
-    public function __construct(string $query)
+    public function __construct(string $query = null)
     {
-        parse_str($query, $this->parameters);
+        if ($query && $query !== '?') {
+            parse_str($query, $this->items);
+        }
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return http_build_query($this->parameters);
+        return http_build_query($this->items);
     }
 
     public function get(string $key, $default = null)
     {
-        return $this->parameters[$key] ?? $default;
+        return $this->items[$key] ?? $default;
     }
 
     public function set(string $key, $value)
     {
-        $this->parameters[$key] = $value;
+        $this->items[$key] = $value;
 
         return $this;
     }
 
     public function all()
     {
-        return $this->parameters;
+        return $this->items;
     }
 }
