@@ -23,18 +23,16 @@ class Url
             throw new \InvalidArgumentException(sprintf('Invalid URL "%s"', $url));
         }
 
-        $this->url = $url;
-
         $parts = parse_url($url);
 
-        $this->scheme = $parts['scheme'] ?? 'http';
+        $this->scheme = $parts['scheme'] ?? null;
         $this->username = $parts['user'] ?? null;
         $this->password = $parts['pass'] ?? null;
-        $this->host = $parts['host'];
-        $this->port = $parts['port'] ?? 80;
-        $this->path = new Path($parts['path'] ?? '/');
-        $this->query = new Query($parts['query'] ?? '');
-        $this->fragment = $parts['fragment'] ?? '';
+        $this->host = $parts['host'] ?? null;
+        $this->port = $parts['port'] ?? null;
+        $this->path = new Path($parts['path'] ?? null);
+        $this->query = new Query($parts['query'] ?? null);
+        $this->fragment = $parts['fragment'] ?? null;
 
         $parts = explode('.', $parts['host']);
         if (count($parts) === 1) {
@@ -49,8 +47,44 @@ class Url
         }
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->url;
+        $url = '';
+
+        if ($this->host) {
+            if ($this->scheme) {
+                $url .= $this->scheme.'://';
+            }
+
+            if ($this->username) {
+                $url .= $this->username;
+
+                if ($this->password) {
+                    $url .= ':'.$this->password;
+                }
+
+                $url .= '@';
+            }
+
+            $url .= $this->host;
+
+            if ($this->port) {
+                $url .= ':'.$this->port;
+            }
+        }
+
+        if ($path = (string) $this->path) {
+            $url .= $path;
+        }
+
+        if ($query = (string) $this->query) {
+            $url .= '?'.$query;
+        }
+
+        if ($this->fragment) {
+            $url .= '#'.$this->fragment;
+        }
+
+        return $url;
     }
 }
