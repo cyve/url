@@ -25,6 +25,10 @@ class Url
 
         $parts = parse_url($url);
 
+        if (isset($parts['user']) || isset($parts['pass'])) {
+            @trigger_error('Using credentials in the URL is deprecated. See https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#Access_using_credentials_in_the_URL', E_USER_DEPRECATED);
+        }
+
         $this->scheme = $parts['scheme'] ?? null;
         $this->username = $parts['user'] ?? null;
         $this->password = $parts['pass'] ?? null;
