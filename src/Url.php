@@ -2,6 +2,8 @@
 
 namespace Cyve\Url;
 
+use Assert\Assertion;
+
 class Url
 {
     public $url;
@@ -15,13 +17,11 @@ class Url
     public $port;
     public $path;
     public $query;
-    public $fragent;
+    public $fragment;
 
     public function __construct(string $url)
     {
-        if (!filter_var($url, FILTER_VALIDATE_URL)) {
-            throw new \InvalidArgumentException(sprintf('Invalid URL "%s"', $url));
-        }
+        Assertion::url($url);
 
         $parts = parse_url($url);
 
