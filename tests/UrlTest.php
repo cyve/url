@@ -99,6 +99,23 @@ class UrlTest extends TestCase
                 'fragment' => null,
             ]
         ];
+        yield [
+            'HTTPS://USERNAME:PASSWORD@SUB.DOMAIN.TLD:8000/FOO/BAR?LOREM=IPSUM#FRAGMENT',
+            [
+                'url' => 'https://USERNAME:PASSWORD@sub.domain.tld:8000/FOO/BAR?LOREM=IPSUM#FRAGMENT',
+                'scheme' => 'https',
+                'username' => 'USERNAME',
+                'password' => 'PASSWORD',
+                'host' => 'sub.domain.tld',
+                'subDomain' => 'sub',
+                'domain' => 'domain.tld',
+                'tld' => 'tld',
+                'port' => 8000,
+                'path' => '/FOO/BAR',
+                'query' => 'LOREM=IPSUM',
+                'fragment' => 'FRAGMENT',
+            ]
+        ];
     }
 
     public function testInvalidUrl()
