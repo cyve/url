@@ -38,17 +38,10 @@ class Url
         $this->query = new Query($parts['query'] ?? null);
         $this->fragment = $parts['fragment'] ?? null;
 
-        $parts = explode('.', $parts['host']);
-        if (count($parts) === 1) {
-            $this->domain = $parts[0];
-        } elseif (count($parts) === 2) {
-            $this->domain = $parts[0].'.'.$parts[1];
-            $this->tld = $parts[1];
-        } elseif (count($parts) === 3) {
-            $this->subDomain = $parts[0];
-            $this->domain = $parts[1].'.'.$parts[2];
-            $this->tld = $parts[2];
-        }
+        $parts = explode('.', $this->host);
+        $this->tld = array_pop($parts);
+        $this->domain = array_pop($parts).'.'.$this->tld;
+        $this->subDomain = implode('.', $parts);
     }
 
     public function __toString(): string

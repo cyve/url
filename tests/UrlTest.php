@@ -82,13 +82,29 @@ class UrlTest extends TestCase
                 'fragment' => null,
             ]
         ];
+        yield [
+            'http://a.b.c.domain.tld',
+            [
+                'url' => 'http://a.b.c.domain.tld',
+                'scheme' => 'http',
+                'username' => null,
+                'password' => null,
+                'host' => 'a.b.c.domain.tld',
+                'subDomain' => 'a.b.c',
+                'domain' => 'domain.tld',
+                'tld' => 'tld',
+                'port' => null,
+                'path' => null,
+                'query' => null,
+                'fragment' => null,
+            ]
+        ];
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testInvalidUrl()
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         new Url('foo');
     }
 }
