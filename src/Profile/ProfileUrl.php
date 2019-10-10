@@ -19,7 +19,31 @@ class ProfileUrl extends Url
         } else if (stripos($url, 'youtube.com') || stripos($url, 'youtu.be')) {
             return new YoutubeUrl($url);
         } else {
-            return new Url($url);
+            return new static($url);
+        }
+    }
+
+    public function getCanonicalUrl(): string
+    {
+        return (string) $this;
+    }
+
+    public function getProvider(): ?string
+    {
+        switch ($this->domain) {
+            case 'bandcamp.com':
+                return 'bandcamp';
+            case 'facebook.com':
+                return 'facebook';
+            case 'soundcloud.com':
+                return 'soundcloud';
+            case 'twitter.com':
+                return 'twitter';
+            case 'youtube.com':
+            case 'youtu.be':
+                return 'youtube';
+            default:
+                return null;
         }
     }
 }
