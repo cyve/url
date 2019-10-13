@@ -16,8 +16,8 @@ class SoundcloudUrl extends ProfileUrl
     public function getCanonicalUrl(): string
     {
         // ex: https://w.soundcloud.com/player/?url=https://api.soundcloud.com/track/123456789
-        if ($this->path[0] === 'player' && $url = $this->query->get('url')) {
-            return (string) $url;
+        if ($this->path[0] === 'player' && $this->query->get('url')) {
+            return (string) $this;
         }
 
         return 'https://soundcloud.com'.strtolower($this->path);
