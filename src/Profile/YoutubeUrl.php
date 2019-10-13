@@ -3,9 +3,8 @@
 namespace Cyve\Url\Profile;
 
 use Assert\Assertion;
-use Cyve\Url\Url;
 
-class YoutubeUrl extends Url
+class YoutubeUrl extends ProfileUrl
 {
     const YOUTUBE_TYPE_VIDEO = 'youtube#video';
     const YOUTUBE_TYPE_PLAYLIST = 'youtube#playlist';

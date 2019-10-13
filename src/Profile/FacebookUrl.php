@@ -3,9 +3,8 @@
 namespace Cyve\Url\Profile;
 
 use Assert\Assertion;
-use Cyve\Url\Url;
 
-class FacebookUrl extends Url
+class FacebookUrl extends ProfileUrl
 {
     public function __construct(string $url)
     {

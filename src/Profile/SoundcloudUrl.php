@@ -3,9 +3,8 @@
 namespace Cyve\Url\Profile;
 
 use Assert\Assertion;
-use Cyve\Url\Url;
 
-class SoundcloudUrl extends Url
+class SoundcloudUrl extends ProfileUrl
 {
     public function __construct(string $url)
     {

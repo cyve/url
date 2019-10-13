@@ -3,9 +3,8 @@
 namespace Cyve\Url\Profile;
 
 use Assert\Assertion;
-use Cyve\Url\Url;
 
-class TwitterUrl extends Url
+class TwitterUrl extends ProfileUrl
 {
     public function __construct(string $url)
     {

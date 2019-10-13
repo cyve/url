@@ -15,6 +15,7 @@ class FacebookUrlTest extends TestCase
         $url = new FacebookUrl($url);
 
         $this->assertEquals($expected, $url->getCanonicalUrl());
+        $this->assertEquals('facebook', $url->getProvider());
     }
 
     public function urlProvider()

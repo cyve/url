@@ -3,9 +3,8 @@
 namespace Cyve\Url\Profile;
 
 use Assert\Assertion;
-use Cyve\Url\Url;
 
-class BandcampUrl extends Url
+class BandcampUrl extends ProfileUrl
 {
     public function __construct(string $url)
     {
