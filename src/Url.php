@@ -3,9 +3,12 @@
 namespace Cyve\Url;
 
 use Assert\Assertion;
+use Psr\Http\Message\UriInterface;
 
-class Url
+class Url implements UriInterface
 {
+    use Psr7Trait;
+
     public $url;
     public $scheme;
     public $username;

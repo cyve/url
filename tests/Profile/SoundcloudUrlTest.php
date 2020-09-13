@@ -21,8 +21,8 @@ class SoundcloudUrlTest extends TestCase
     {
         yield ['https://soundcloud.com/lorem', 'https://soundcloud.com/lorem'];
         yield ['http://fr-fr.SOUNDCLOUD.com/lorem/?ref=about', 'https://soundcloud.com/lorem'];
-        yield ['https://w.soundcloud.com/player/?url=https://soundcloud.com/lorem&foo=bar', 'https://soundcloud.com/lorem'];
         yield ['https://soundcloud.com/lorem/sets/ipsum', 'https://soundcloud.com/lorem/sets/ipsum'];
+        yield ['https://w.soundcloud.com/player/?url=https://api.soundcloud.com/track/123456789', 'https://w.soundcloud.com/player?url=https%3A%2F%2Fapi.soundcloud.com%2Ftrack%2F123456789'];
     }
 
     public function testInvalidUrl()
