@@ -80,6 +80,11 @@ trait Psr7Trait
     {
         $this->host = $host;
 
+        $parts = explode('.', $this->host);
+        $this->tld = array_pop($parts);
+        $this->domain = array_pop($parts).'.'.$this->tld;
+        $this->subDomain = implode('.', $parts);
+
         return $this;
     }
 
