@@ -2,7 +2,6 @@
 
 namespace Cyve\Url;
 
-use Assert\Assertion;
 use Psr\Http\Message\UriInterface;
 
 class Url implements UriInterface
@@ -24,7 +23,9 @@ class Url implements UriInterface
 
     public function __construct(string $url)
     {
-        Assertion::url($url);
+        if (!filter_var($url, FILTER_VALIDATE_URL)) {
+            throw new \InvalidArgumentException(sprintf('`%s` is not a valid URL', $url));
+        }
 
         $parts = parse_url($url);
 

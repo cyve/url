@@ -2,8 +2,6 @@
 
 namespace Cyve\Url;
 
-use Assert\Assertion;
-
 trait Psr7Trait
 {
     public function getScheme()
@@ -61,7 +59,9 @@ trait Psr7Trait
 
     public function withScheme($scheme)
     {
-        Assertion::inArray($scheme, ['http', 'https']);
+        if (!in_array($scheme, ['http', 'https'])) {
+            throw new \InvalidArgumentException(sprintf('`%s` is not a valid scheme (`http` or `https` allowed)', $scheme));
+        }
 
         $this->scheme = $scheme;
 
