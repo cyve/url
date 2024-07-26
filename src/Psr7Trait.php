@@ -41,7 +41,7 @@ trait Psr7Trait
 
     public function getPort(): ?int
     {
-        return $this->port ?? '';
+        return $this->port;
     }
 
     public function getPath(): string
@@ -59,12 +59,8 @@ trait Psr7Trait
         return $this->fragment ?? '';
     }
 
-    public function withScheme(/* string */ $scheme): UriInterface
+    public function withScheme(string $scheme): UriInterface
     {
-        if (!is_string($scheme)) {
-            @trigger_error(sprintf('Calling %s with %s as first argument is deprecated', __METHOD__, gettype($scheme)), \E_USER_DEPRECATED);
-        }
-
         if (!in_array($scheme, ['http', 'https'])) {
             throw new \InvalidArgumentException(sprintf('`%s` is not a valid scheme (`http` or `https` allowed)', $scheme));
         }
@@ -74,24 +70,16 @@ trait Psr7Trait
         return $this;
     }
 
-    public function withUserInfo(/* string */ $user, /* ?string */ $password = null): UriInterface
+    public function withUserInfo(string $user, ?string $password = null): UriInterface
     {
-        if (!is_string($user)) {
-            @trigger_error(sprintf('Calling %s with %s as first argument is deprecated', __METHOD__, gettype($user)), \E_USER_DEPRECATED);
-        }
-
         $this->username = $user;
         $this->password = $password;
 
         return $this;
     }
 
-    public function withHost(/* string */ $host): UriInterface
+    public function withHost(string $host): UriInterface
     {
-        if (!is_string($host)) {
-            @trigger_error(sprintf('Calling %s with %s as first argument is deprecated', __METHOD__, gettype($host)), \E_USER_DEPRECATED);
-        }
-
         $this->host = $host;
 
         $parts = explode('.', $this->host);
@@ -102,45 +90,29 @@ trait Psr7Trait
         return $this;
     }
 
-    public function withPort(/* ?int */ $port): UriInterface
+    public function withPort(?int $port): UriInterface
     {
-        if (!is_null($port) && !is_int($port)) {
-            @trigger_error(sprintf('Calling %s with %s as first argument is deprecated', __METHOD__, gettype($port)), \E_USER_DEPRECATED);
-        }
-
         $this->port = $port;
 
         return $this;
     }
 
-    public function withPath(/* string */ $path): UriInterface
+    public function withPath(string $path): UriInterface
     {
-        if (!is_string($path)) {
-            @trigger_error(sprintf('Calling %s with %s as first argument is deprecated', __METHOD__, gettype($path)), \E_USER_DEPRECATED);
-        }
-
         $this->path = new Path($path);
 
         return $this;
     }
 
-    public function withQuery(/* string */ $query): UriInterface
+    public function withQuery(string $query): UriInterface
     {
-        if (!is_string($query)) {
-            @trigger_error(sprintf('Calling %s with %s as first argument is deprecated', __METHOD__, gettype($query)), \E_USER_DEPRECATED);
-        }
-
         $this->query = new Query($query);
 
         return $this;
     }
 
-    public function withFragment(/* string */ $fragment): UriInterface
+    public function withFragment(string $fragment): UriInterface
     {
-        if (!is_string($fragment)) {
-            @trigger_error(sprintf('Calling %s with %s as first argument is deprecated', __METHOD__, gettype($fragment)), \E_USER_DEPRECATED);
-        }
-
         $this->fragment = $fragment;
 
         return $this;

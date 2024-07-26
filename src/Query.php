@@ -4,7 +4,7 @@ namespace Cyve\Url;
 
 class Query
 {
-    private $items = [];
+    private array $items = [];
 
     public function __construct(string $query = null)
     {

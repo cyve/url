@@ -131,7 +131,7 @@ class UrlTest extends TestCase
 
         $this->assertEquals('https', $url->withScheme('https')->getScheme());
         $this->assertEquals('sub.domain.tld', $url->withHost('sub.domain.tld')->getHost());
-        $this->assertEquals('8000', $url->withPort(8000)->getPort());
+        $this->assertEquals(8000, $url->withPort(8000)->getPort());
         $this->assertEquals('username:password', $url->withUserInfo('username', 'password')->getUserInfo());
         $this->assertEquals('username:password@sub.domain.tld:8000', $url->getAuthority());
         $this->assertEquals('/foo/bar', $url->withPath('/foo/bar')->getPath());

@@ -14,7 +14,7 @@ class Url implements UriInterface
     public ?string $subDomain;
     public ?string $domain;
     public ?string $tld;
-    public ?string $port;
+    public ?int $port;
     public Path $path;
     public Query $query;
     public ?string $fragment;
@@ -35,7 +35,7 @@ class Url implements UriInterface
         $this->username = $parts['user'] ?? null;
         $this->password = $parts['pass'] ?? null;
         $this->host = strtolower($parts['host'] ?? '') ?: null;
-        $this->port = strtolower($parts['port'] ?? '') ?: null;
+        $this->port = isset($parts['port']) ? (int) strtolower($parts['port']) : null;
         $this->path = new Path($parts['path'] ?? null);
         $this->query = new Query($parts['query'] ?? null);
         $this->fragment = $parts['fragment'] ?? null;
@@ -68,9 +68,9 @@ class Url implements UriInterface
 
         $url[] = $this->domain;
 
-        if ($this->port) {
+        if ($port = (string) $this->port) {
             $url[] = ':';
-            $url[] = $this->port;
+            $url[] = $port;
         }
 
         if ($path = (string) $this->path) {
