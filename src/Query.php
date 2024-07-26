@@ -18,19 +18,19 @@ class Query
         return http_build_query($this->items);
     }
 
-    public function get(string $key, $default = null)
+    public function get(string $key, $default = null): ?string
     {
         return $this->items[$key] ?? $default;
     }
 
-    public function set(string $key, $value)
+    public function set(string $key, $value): self
     {
         $this->items[$key] = $value;
 
         return $this;
     }
 
-    public function all()
+    public function all(): array
     {
         return $this->items;
     }

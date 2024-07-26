@@ -4,9 +4,9 @@ namespace Cyve\Url\Utils;
 
 trait Countable
 {
-    private $items = [];
+    private array $items = [];
 
-    public function count()
+    public function count(): int
     {
         return count($this->items);
     }

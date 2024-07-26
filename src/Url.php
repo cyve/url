@@ -7,19 +7,17 @@ use Psr\Http\Message\UriInterface;
 class Url implements UriInterface
 {
     use Psr7Trait;
-
-    public $url;
-    public $scheme;
-    public $username;
-    public $password;
-    public $host;
-    public $subDomain;
-    public $domain;
-    public $tld;
-    public $port;
-    public $path;
-    public $query;
-    public $fragment;
+    public ?string $scheme;
+    public ?string $username;
+    public ?string $password;
+    public ?string $host;
+    public ?string $subDomain;
+    public ?string $domain;
+    public ?string $tld;
+    public ?string $port;
+    public Path $path;
+    public Query $query;
+    public ?string $fragment;
 
     public function __construct(string $url)
     {

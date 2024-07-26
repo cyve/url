@@ -4,30 +4,30 @@ namespace Cyve\Url\Utils;
 
 trait Iterator
 {
-    private $items = [];
-    private $position = 0;
+    private array $items = [];
+    private int $position = 0;
 
-    public function rewind()
+    public function rewind(): void
     {
         $this->position = 0;
     }
 
-    public function current()
+    public function current(): mixed
     {
         return $this->items[$this->position];
     }
 
-    public function key()
+    public function key(): mixed
     {
         return $this->position;
     }
 
-    public function next()
+    public function next(): void
     {
         ++$this->position;
     }
 
-    public function valid()
+    public function valid(): bool
     {
         return isset($this->items[$this->position]);
     }
